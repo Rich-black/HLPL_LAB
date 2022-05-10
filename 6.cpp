@@ -1,8 +1,9 @@
 #include "std_lib_facilities.h"
-
+//Define template<typename T> struct S { T val; };.
 template<typename T>
 struct S
 {
+//  Add a constructor, so that you can initialize with a T.
     S(T vv = 0) : val{ vv } { }
 
     T& get();
@@ -71,7 +72,7 @@ std::istream& operator>>(istream& is, vector<T>& v)
 
     return is;
 }
-
+// Define variables of types S<int>, S<char>, S<double>, S<string>, and S<vector<int>>;use the value of we choice
 int main()
 {
     S<int> si{ 64 };
@@ -91,6 +92,7 @@ int main()
         << sv.get() << endl;
 
     cout << "int: " << endl;
+   //  Read those values and print them.
     int i;
     read_val(i);
     S<int> si2{ i };
