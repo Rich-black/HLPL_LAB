@@ -6,6 +6,8 @@ void chapter941()
     using namespace Chrono941;
     cout << "Chapter 9.4.1:\n";
     Date today;
+    //defi ne a Date called today initialized to June 25, 1978
+    //Date called tomorrow and give it a value by copying today into it 
     init_day(today, 1978, 6, 25);
     Date tomorrow = today;
     add_day(tomorrow, 1);
