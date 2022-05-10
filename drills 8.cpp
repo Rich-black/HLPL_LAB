@@ -1,4 +1,5 @@
 #include "std_lib_facilities.h"  
+//Write three function where d1 and d2 are the names of the arguments.
      void swap_v(int d1, int d2)  
  {  
  int temp = d1;  
