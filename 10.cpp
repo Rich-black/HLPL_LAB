@@ -1,9 +1,10 @@
-// Chapter 10, drill
+// Chapter 10,
 
 #include "../lib_files/std_lib_facilities.h"
 
 // type for points
 struct Point {
+//    define the data type Point that has two coordinate members x and y.
     int x;
     int y;
     Point() :x(0), y(0) { }
@@ -64,7 +65,7 @@ void fill_from_file(vector<Point>& points, const string& name)
     while (ist >> pp) points.push_back(pp);
 }
 
-// function to compare two vectors
+// function to compare two vectors and print Something's wrong!
 void compare_vectors(const vector<Point>& points1, const vector<Point>& points2)
 {
     if (points1.size() != points2.size())
