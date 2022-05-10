@@ -1,83 +1,58 @@
-#include "../lib_files/std_lib_facilities.h"
-#include "Chrono.h"
+#include "std_lib_facilities.h"
 
-void chapter941()
+struct Date {
+    int y;     
+    int m;     
+    int d;
+};
+
+void init_day(Date& dd, int y, int m, int d)
 {
-    using namespace Chrono941;
-    cout << "Chapter 9.4.1:\n";
-    Date today;
-    //defi ne a Date called today initialized to June 25, 1978
-    //Date called tomorrow and give it a value by copying today into it 
-    init_day(today, 1978, 6, 25);
-    Date tomorrow = today;
-    add_day(tomorrow, 1);
-    cout << "Today: " << today << endl;
-    cout << "Tomorrow: " << tomorrow << endl;
-    Date invalid_date;
-    init_day(invalid_date, 2004, 13, -5);
+    if (d < 1 || d > 31) error("init_day: Invalid day");
+    if (m < 1 || m > 12) error("init_day: Invalid month");
+
+    dd.y = y;
+    dd.m = m;
+    dd.d = d;
 }
 
-void chapter942()
+void add_day(Date& dd, int n)
 {
-    using namespace Chrono942;
-    cout << "Chapter 9.4.2:\n";
-    Date today(1978, 6, 25);  // colloquial style
-    Date tomorrow = today;  // copy constructor
-    tomorrow.add_day(1);
-    cout << "Today: " << today << endl;
-    cout << "Tomorrow: " << tomorrow << endl;
-    Date invalid_date = Date(2004, 13, -5);   // verbose style
+    dd.d += n;
+    
+    if (dd.d > 31) { ++dd.m; dd.d -= 31; }
+    if (dd.d < 1)  { --dd.m; dd.d += 31; }
+
+    if (dd.m > 12) { ++dd.y; dd.m -= 12; }
+    if (dd.m < 1)  { --dd.y; dd.m += 12; }
 }
 
-void chapter943()
+ostream& operator<<(ostream& os, const Date& d)
 {
-    using namespace Chrono943;
-    cout << "Chapter 9.4.3:\n";
-    Date today(1978, 6, 25);  // colloquial style
-    Date tomorrow = today;  // copy constructor
-    tomorrow.add_day(1);
-    cout << "Today: " << today << endl;
-    cout << "Tomorrow: " << tomorrow << endl;
-    Date invalid_date = Date(2004, 13, -5);   // verbose style
-}
-
-void chapter971()
-{
-    using namespace Chrono971;
-    cout << "Chapter 9.7.1:\n";
-    Date today(1978, Date::jun, 25);  // colloquial style
-    Date tomorrow = today;  // copy constructor
-    tomorrow.add_day(1);
-    cout << "Today: " << today << endl;
-    cout << "Tomorrow: " << tomorrow << endl;
-    Date invalid_date = Date(2004, Date::dec, -5);   // verbose style
-}
-
-void chapter974()
-{
-    using namespace Chrono974;
-    cout << "Chapter 9.7.4:\n";
-    Date default_d;
-    cout << "Default date: " << default_d << endl;
-    Date today(1978, Date::jun, 25);  // colloquial style
-    Date tomorrow = today;  // copy constructor
-    tomorrow.add_day(1);
-    Date next_year = today;
-    next_year.add_year(1);
-    cout << "Today: " << today << endl;
-    cout << "Tomorrow: " << tomorrow << endl;
-    cout << "Next year: " << next_year << endl;
-    Date invalid_date = Date(2004, Date::dec, -5);   // verbose style
+    return os << '(' << d.y
+              << ',' << d.m
+              << ',' << d.d << ')';
 }
 
 int main()
 try
 {
-    chapter974();
+    Date today;
+    init_day(today, 1978, 6, 25);
+
+    Date tomorrow{today};
+    add_day(tomorrow, 1);
+
+    cout << "Today: " << today << '\n';
+    cout << "Tomorrow: " << tomorrow << '\n';
+
+    Date today_e;
+    init_day(today_e, 2004, 13, -5);
+
+    return 0;
 }
-catch (exception& e) {
-    cerr << "exception: " << e.what() << endl;
-}
-catch (...) {
-    cerr << "exception\n";
+catch(exception& e)
+{
+    cerr << e.what() << '\n';
+    return 1;
 }
