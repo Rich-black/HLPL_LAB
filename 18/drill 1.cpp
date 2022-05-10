@@ -1,9 +1,10 @@
 #include "std_lib_facilities.h"
-
+//difine an int array ga of ten ints
 int ga[10]{ 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 };
 
-
+//define a function taking an int array argument and a argument indicating the number of elements in array.
 void f(int a[], int x)
+//define a local int array la of  ten ints 
 {
     int la[10];
 
