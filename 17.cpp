@@ -32,14 +32,14 @@ int main() {
     cout<<endl;
     //1,3
     delete [] a1;
-    //1,5
+    //1,5 Allocate an array of ten ints on the free store; initialize it with the values 100, 101, 102, etc.; and print out its values.
+
     int* a5 = new int[10];
     for(int i=0;i<10;++i)
         a5[i] = 100+i;
     print_array10 (cout, a5);
     delete [] a5;
-    //1,6 Allocate an array of ten ints on the free store; initialize it with the values 
-100, 101, 102, etc.; and print out its values.
+    //1,6
     int* a6 = new int[11];
     for(int i=0;i<11;++i)
     {
@@ -48,8 +48,8 @@ int main() {
     }
     cout<<endl;
     delete [] a6;
-    //1,8 Allocate an array of 20 ints on the free store; initialize it with the values 
-100, 101, 102, etc.; and print out its values.
+    //1,8 Allocate an array of 20 ints on the free store; initialize it with the values 100, 101, 102, etc.; and print out its values.
+
     int* a8 = new int[20];
     for(int i=0;i<20;++i)
         a8[i] = 100+i;
